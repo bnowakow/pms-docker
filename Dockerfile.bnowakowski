@@ -1,0 +1,29 @@
+FROM plexinc/pms-docker:1.9.4.4325-1bf240a65
+
+USER root
+RUN \
+	apt-get update && \
+	apt-get install -y sshfs wget unzip
+
+RUN \
+	mkdir -p /data/tbox2 && \
+	chown plex:plex /data/tbox2
+
+RUN \
+	mkdir -p "/config/Library/Application Support/Plex Media Server/Plug-ins" && \
+	chown plex:plex "/config/Library/Application Support/Plex Media Server/Plug-ins"
+
+USER plex
+COPY further-commands-to-run-in-privileged-mode.sh /
+
+# FIXME it doesn't find this dir eventhough it's created above, wtf?
+#RUN \
+#	ls -la "/config/Library/Application Support/Plex Media Server/" && \
+#	cd "/config/Library/Application Support/Plex Media Server/Plug-ins" && \
+#	wget https://github.com/ukdtom/WebTools.bundle/releases/download/2.4.1/WebTools.bundle.zip && \
+#	unzip WebTools.bundle.zip && \
+#	rm unzip WebTools.bundle.zip
+
+#ENTRYPOINT ["/further-commands-to-run-in-privileged-mode.sh && /init"]
+
+USER root

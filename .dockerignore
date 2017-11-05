@@ -5,3 +5,6 @@ docker-compose-bridge.yml.template
 docker-compose-macvlan.yml.template
 docker-compose-host.yml.template
 docker-compose.yml
+
+.ssh
+data-prod

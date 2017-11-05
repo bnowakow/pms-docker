@@ -3,6 +3,7 @@ services:
   plex:
     container_name: plex
     image: plexinc/pms-docker
+    #image: pms-docker-bnowakowski
     restart: unless-stopped
     ports:
       - 32400:32400/tcp
@@ -14,9 +15,11 @@ services:
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
+      - 33400:33400
+      - 33443:33443
     environment:
       - TZ=Europe/Warsaw
-      - PLEX_CLAIM=claim-<TODO-INSERT-IN-SECRETS>
+      - PLEX_CLAIM=claim-qNyz28ZHdXKv2YsaZdvN
       - ADVERTISE_IP=http://164.132.42.164:32400/
       - PLEX_UID=1003
       - PLEX_GID=1000
@@ -24,4 +27,5 @@ services:
     volumes:
       - ./data/config:/config
       - ./data/transcode:/transcode
-      - ./data/tmp:/data
+      - ./data/data:/data
+    privileged: true
