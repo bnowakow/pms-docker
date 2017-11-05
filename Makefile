@@ -4,7 +4,7 @@ start:
 
 stop:
 	docker-compose -f docker-compose-bridge.yml down
-	docker rm plex
+	docker rm plex; docker volume prune -f
 
 console:
 	docker exec -it plex bash
@@ -15,7 +15,7 @@ sshfs:
 		sshfs -o idmap=user kszczep@tbox:/home/kszczep/torrents /media/tbox
 
 build:
-	docker build -f Dockerfile.bnowakowski-standalone -t "pms-docker-bnowakowski" .
+	docker build -f Dockerfile.bnowakowski-standalone -t "pms-docker-bnowakowski:1.9.4.4325-1bf240a65" .
 
 data:
 	mkdir data

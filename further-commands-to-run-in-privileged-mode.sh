@@ -4,7 +4,11 @@
 #mkdir /data/tbox3
 #ls -la /data
 
-sshfs -o idmap=user kszczep@91.121.159.72:/home/kszczep/torrents /data/tbox2
+chmod 777 /data
+mkdir -p /data/tbox2
+chown 1003:1000 /data/tbox2
+#sudo -u plex mkdir -p /data/tbox2
+sudo -u plex sshfs -o idmap=user kszczep@91.121.159.72:/home/kszczep/torrents /data/tbox2
 echo tbox2
 ls -la /data/tbox2
 

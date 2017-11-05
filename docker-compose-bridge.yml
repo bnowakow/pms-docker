@@ -2,8 +2,8 @@ version: '2'
 services:
   plex:
     container_name: plex
-    image: plexinc/pms-docker
-    #image: pms-docker-bnowakowski
+    #image: plexinc/pms-docker:1.9.4.4325-1bf240a65
+    image: pms-docker-bnowakowski:1.9.4.4325-1bf240a65
     restart: unless-stopped
     ports:
       - 32400:32400/tcp
@@ -28,4 +28,6 @@ services:
       - ./data/config:/config
       - ./data/transcode:/transcode
       - ./data/data:/data
+#      - ./.ssh:/root/.ssh
+      - ./.ssh:/config/.ssh
     privileged: true
